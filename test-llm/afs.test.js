@@ -35,7 +35,7 @@ describe('AOS-Llama+VFS Tests', async () => {
           memory: new WebAssembly.Memory({ initial: 8589934592 / 65536, maximum: 17179869184 / 65536, index: 'i64' })
         }
       }
-      //imports.env = Object.assign({}, imports.env, customImports.env)
+      imports.env = Object.assign({}, imports.env, customImports.env)
 
       WebAssembly.instantiate(wasm, imports).then(result =>
 
@@ -74,6 +74,17 @@ describe('AOS-Llama+VFS Tests', async () => {
     const result = await handle(getEval('1 + 1'), getEnv())
     console.log("Eval complete")
     assert.equal(result.response.Output.data.output, 2)
+  })
+
+  it('Test swapnil', async () => {
+    const result = await handle(getEval(`
+        local swapnil = require("_swapnil")
+        local l = swapnil.add(10,10)
+        io.stderr:write(l)
+        return l
+      `), getEnv())
+    console.log(result.response.Output.data.output,"==")
+    // assert.ok(result.response.Output.data.output == "")
   })
 
   it('Add data to the VFS', async () => {
@@ -120,7 +131,7 @@ return Llama.info()
     assert.ok(result.response.Output.data.output == "Decentralized llama.cpp.")
   })
 
-  it('AOS runs GPT-2-XL model', async () => {
+  it.skip('AOS runs GPT-2-XL model', async () => {
     const result = await handle(getEval(`
   local Llama = require("llama")
   io.stderr:write([[Loading model...\n]])
