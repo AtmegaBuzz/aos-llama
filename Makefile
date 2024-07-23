@@ -22,7 +22,7 @@ build-test: build test-llm
 test-llm:
 	cp build/aos/process/AOS.wasm test-llm/AOS.wasm
 	cp build/aos/process/AOS.js test-llm/AOS.js
-	cd test-llm && yarn test
+	cd test-llm && npm run test
 
 .PHONY: test
 test: node

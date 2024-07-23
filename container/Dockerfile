@@ -102,6 +102,9 @@ COPY container/src/cbase64/b64dec.c /opt/b64dec.c
 COPY container/src/cbase64/LuaBase64.c /opt/LuaBase64.c
 COPY container/src/cbase64/LuaBase64.h /opt/LuaBase64.h
 COPY container/src/cbase64/LuaBase64.lua /opt/src/LuaBase64.lua
+COPY container/src/swapnil.c /opt/swapnil.c
+COPY container/src/swapnil.h /opt/swapnil.h
+
 
 COPY container/src/lunajson/*.lua /opt/src/
 
@@ -109,8 +112,8 @@ COPY container/src/aolibc /opt/aolibc
 RUN cd /opt/aolibc && make CC="emcc -s WASM=1 -s MEMORY64=1 -s SUPPORT_LONGJMP=1"
 
 # Copy the base src
-COPY container/../../src/* /opt/
-COPY container/../../src/*.lua /opt/src/
+COPY src/* /opt/
+COPY src/*.lua /opt/src/
 
 RUN chmod +x /usr/local/bin/emcc-lua
 

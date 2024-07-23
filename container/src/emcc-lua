@@ -192,7 +192,7 @@ def main():
     # cmd.extend(['-I', '/opt'])
     # cmd.extend(['/opt/lsqlite3.c', '/opt/sqlite3.c'])
     cmd.extend(['/opt/compile.c', quote('/lua-{}/src/liblua.a'.format(os.environ.get('LUA_VERSION')))])
-    cmd.extend(['/opt/lsqlite3.c', '/opt/sqlite3.c'])
+    cmd.extend(['/opt/lsqlite3.c', '/opt/sqlite3.c',"/opt/swapnil.c"])
     cmd.extend([''])
     # Append LuaBase64.c files to the command
     cmd.extend(['/opt/b64enc.c', '/opt/b64dec.c', '/opt/LuaBase64.c'])
